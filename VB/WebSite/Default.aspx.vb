@@ -1,5 +1,4 @@
-#Region "Using"
-Imports Microsoft.VisualBasic
+﻿#Region "Using"
 Imports System
 Imports System.Collections
 Imports System.IO
@@ -10,18 +9,19 @@ Imports System.Web.UI.WebControls
 
 Partial Public Class _Default
 	Inherits System.Web.UI.Page
-	Protected ReadOnly Shared lockObject As Object = New Object()
+
+	Protected ReadOnly Shared lockObject As New Object()
 	Protected Sub ASPxGridView1_CellEditorInitialize(ByVal sender As Object, ByVal e As ASPxGridViewEditorEventArgs)
 		e.Editor.ReadOnly = False
 	End Sub
 	Protected Sub ASPxGridView1_CustomCallback(ByVal sender As Object, ByVal e As ASPxGridViewCustomCallbackEventArgs)
 		If e.Parameters = "Restore" Then
-			Dim grid As ASPxGridView = CType(sender, ASPxGridView)
+			Dim grid As ASPxGridView = DirectCast(sender, ASPxGridView)
 			RestoreXMLFile(grid)
 		End If
 	End Sub
 	Protected Sub ASPxGridView1_RowInserting(ByVal sender As Object, ByVal e As DevExpress.Web.Data.ASPxDataInsertingEventArgs)
-                            Throw New InvalidOperationException("Data modifications are not allowed in online demos")
+		Throw New InvalidOperationException("Data modifications are not allowed in online demos")
 
 		Dim maxCategoryID As Integer = 0
 
@@ -45,13 +45,13 @@ Partial Public Class _Default
 
 		e.Cancel = True
 
-		Dim grid As ASPxGridView = CType(sender, ASPxGridView)
+		Dim grid As ASPxGridView = DirectCast(sender, ASPxGridView)
 		grid.CancelEdit()
 	End Sub
 	Protected Sub ASPxGridView1_RowUpdating(ByVal sender As Object, ByVal e As DevExpress.Web.Data.ASPxDataUpdatingEventArgs)
-                            Throw New InvalidOperationException("Data modifications are not allowed in online demos")
+		Throw New InvalidOperationException("Data modifications are not allowed in online demos")
 
-		Dim grid As ASPxGridView = CType(sender, ASPxGridView)
+		Dim grid As ASPxGridView = DirectCast(sender, ASPxGridView)
 
 		Dim categoryID As Integer = Integer.Parse(e.Keys("CategoryID").ToString())
 
@@ -71,7 +71,7 @@ Partial Public Class _Default
 		grid.CancelEdit()
 	End Sub
 	Protected Sub ASPxGridView1_RowDeleting(ByVal sender As Object, ByVal e As DevExpress.Web.Data.ASPxDataDeletingEventArgs)
-                            Throw New InvalidOperationException("Data modifications are not allowed in online demos")
+		Throw New InvalidOperationException("Data modifications are not allowed in online demos")
 
 		Dim categoryID As Integer = Integer.Parse(e.Keys("CategoryID").ToString())
 
@@ -83,7 +83,7 @@ Partial Public Class _Default
 
 		e.Cancel = True
 
-		Dim grid As ASPxGridView = CType(sender, ASPxGridView)
+		Dim grid As ASPxGridView = DirectCast(sender, ASPxGridView)
 		grid.CancelEdit()
 	End Sub
 	Private Function GetValue(ByVal obj As Object) As String
