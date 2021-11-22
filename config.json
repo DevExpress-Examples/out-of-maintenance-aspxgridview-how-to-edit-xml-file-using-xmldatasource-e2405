@@ -1,5 +1,5 @@
 {
   "runOnWeb": true,
   "useLegacyVbConverter": true,
-  "autoGenerateVb": true
+  "autoGenerateVb": false
 }
